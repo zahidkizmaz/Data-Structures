@@ -13,8 +13,16 @@ void printList(n *rootElement){
 		printf("%d \n",rootElement->data);
 		rootElement = rootElement->next;
 	}
-		
+}
 
+void add(n *element, int data){
+	while(element->next != NULL){
+		element = element->next;
+	}
+	element->next = (n *)malloc(sizeof(n));
+	element = element->next;
+	element->data = data;
+	element->next = NULL;
 }
 
 int main(){
@@ -25,14 +33,11 @@ int main(){
 	root->next =NULL;	
 	n* iter;
 	iter = root;
-
-	int i = 0;
-	for(i=0;i<5;i++){
-		iter->next = (n * )malloc(sizeof(n));
-		iter = iter->next;
-		iter->next = NULL;
-		iter->data =i;
-	}
+	
+	add(root, 2);
+	add(root, 3);
+	add(root, 4);
+	add(root, 5);
 
 	printList(root);
 	return 0;
