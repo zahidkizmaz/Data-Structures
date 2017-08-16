@@ -15,6 +15,14 @@ void printList(n *rootElement){
 	}
 }
 
+n* createLinkedList(int data){
+	n* element;
+	element = (n *) malloc(sizeof(n));
+	element->next= NULL;
+	element->data= data;
+	return element;
+}
+
 void add(n *element, int data){
 	while(element->next != NULL){
 		element = element->next;
@@ -27,18 +35,11 @@ void add(n *element, int data){
 
 int main(){
 
-	n * root;
-	root = (n *) malloc(sizeof(n)); 
-	root -> data = 1;
-	root->next =NULL;	
-	n* iter;
-	iter = root;
-	
+	n * root = createLinkedList(1);
 	add(root, 2);
 	add(root, 3);
 	add(root, 4);
 	add(root, 5);
-
 	printList(root);
 	return 0;
 }
