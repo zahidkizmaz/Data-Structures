@@ -14,7 +14,7 @@ void printList(n *rootElement){
 		printf("%d \n",iter->data);
 		iter = iter->next;
 	}
-	while(iter->next != rootElement);
+	while(iter != rootElement);
 
 }
 
@@ -65,12 +65,16 @@ n* remove(n* root,int data){
 
 n* search(n* root, int data){
 	n* iter = root;
-	while(iter->next != root){
+	if(iter->data == data)
+		return iter;
+	iter = iter->next; 
+	while(iter != root){
 		if(iter->data == data){
 			return iter;
 		}
 		iter=iter->next;
 	}
+	printf("Couldnt find the data you wanted!\n");
 	return NULL;
 }
 
@@ -79,14 +83,12 @@ int main(){
 	n * root = createLinkedList(1);
 	add(root, 2);
 	add(root, 3);
+	add(root, 4);
 	add(root, 5);
 	printList(root);
+	root = remove(root, 3);
 	printf("\n");
 	printList(root);
-	root = remove(root,7);
-	//printf("\n%d\n",search(root,5)->next->data);
-	n* last = search(root,5);
-	last= last->next;
-	//printf("  %d  ",last->data );
+	printf("\n%d\n",search(root,5)->next->data);
 	return 0;
 }
